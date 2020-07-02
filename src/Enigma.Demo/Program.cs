@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Enigma
+namespace Enigma.Demo
 {
     class Program
     {
