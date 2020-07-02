@@ -21,10 +21,10 @@ namespace Enigma.Demo
                 var plainText = Console.ReadLine();
                 var enigma = new Enigma(pass?.Length ?? 3);
 
-                var cipher = enigma.Encrypt(plainText);
+                var cipher = enigma.Encrypt(plainText, pass);
                 WriteColored(cipher, ConsoleColor.DarkMagenta);
 
-                Console.Read();
+                Console.ReadLine();
             }
         }
 

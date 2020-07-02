@@ -6,7 +6,6 @@ namespace Enigma
     public class Enigma
     {
         public Rotor[] Rotors { get; set; }
-        private int Step { get; set; } = 1;
 
         public Enigma(int passwordLength, params Rotor[] rotors)
         {
@@ -25,19 +24,21 @@ namespace Enigma
         }
 
 
-        public string Encrypt(string text)
+        public string Encrypt(string text, string password)
         {
+            SetPassword(password);
             var result = "";
+            var step = 1;
             foreach (var c in text)
             {
                 result += Encrypt(c);
-                WheelRotors();
+                WheelRotors(step++);
             }
 
             return result;
         }
 
-        public char Encrypt(char ch)
+        private char Encrypt(char ch)
         {
             var result = ch;
 
@@ -59,15 +60,24 @@ namespace Enigma
             return result;
         }
 
-        private void WheelRotors()
+        private void WheelRotors(int step)
         {
             for (var i = 0; i < Rotors.Length; i++)
             {
-                if (Step % (long)Math.Pow(Rotor.Alphabets.Length, i) == 0)
+                if (step % (long)Math.Pow(Rotor.Alphabets.Length, i) == 0)
                     Rotors[i].Shifting();
             }
+        }
 
-            Step++;
+        private void SetPassword(string pass)
+        {
+            // first state of rotors
+            for (var p = 0; p < pass.Length; p++)
+            {
+                var passChar = pass[p];
+                var shiftCount = Rotor.Alphabets.IndexOf(passChar) + 1;
+                Rotors[p].Shifting(shiftCount);
+            }
         }
     }
 }
