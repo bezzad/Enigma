@@ -9,8 +9,9 @@ namespace Enigma.Test
         public void EncryptTest()
         {
             var text = "test text";
-            var cipher = new Enigma(3).Encrypt(text);
-            var plainText = new Enigma(3).Encrypt(cipher);
+            var password = "test password";
+            var cipher = new Enigma(password.Length).Encrypt(text, password);
+            var plainText = new Enigma(password.Length).Encrypt(cipher, password);
             Assert.AreNotEqual(cipher, text);
             Assert.AreEqual(plainText, text);
         }

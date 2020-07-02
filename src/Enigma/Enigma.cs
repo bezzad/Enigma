@@ -14,7 +14,7 @@ namespace Enigma
                 Rotors = new Rotor[passwordLength];
                 for (var i = 0; i < passwordLength; i++)
                 {
-                    Rotors[i] = new Rotor();
+                    Rotors[i] = new Rotor(i);
                 }
             }
             else

@@ -5,13 +5,14 @@ namespace Enigma
 {
     public class Rotor
     {
-        private readonly Random _rand = new Random(1);
+        private Random Rand { get; }
         public static string Alphabets { get; set; } = new string(Enumerable.Range(32, 126 - 32).Select(i => (char)i).ToArray()) + "";
         public string RotorChars { get; set; }
 
-        public Rotor()
+        public Rotor(int seed = 1)
         {
-            RotorChars = new string(Alphabets.OrderBy(x => _rand.Next()).ToArray());
+            Rand = new Random(seed);
+            RotorChars = new string(Alphabets.OrderBy(x => Rand.Next()).ToArray());
         }
 
         public void Shifting(int count = 1)

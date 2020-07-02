@@ -27,7 +27,6 @@ namespace Enigma.Test
             Assert.IsTrue(rotor.RotorChars.IndexOf("1", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf("/", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf("a", StringComparison.Ordinal) >= 0);
-            Assert.IsTrue(rotor.RotorChars.IndexOf("ش", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf("s", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf("0", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf(".", StringComparison.Ordinal) >= 0);
@@ -35,11 +34,10 @@ namespace Enigma.Test
             Assert.IsTrue(rotor.RotorChars.IndexOf(",", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf("#", StringComparison.Ordinal) >= 0);
             Assert.IsTrue(rotor.RotorChars.IndexOf("@", StringComparison.Ordinal) >= 0);
-            Assert.IsTrue(rotor.RotorChars.IndexOf("ء", StringComparison.Ordinal) >= 0);
 
             for (var i = 0; i < 100; i++)
             {
-                Assert.AreNotEqual(new Rotor().RotorChars, new Rotor().RotorChars);
+                Assert.AreNotEqual(new Rotor(i).RotorChars, new Rotor(i+1).RotorChars);
             }
         }
     }
